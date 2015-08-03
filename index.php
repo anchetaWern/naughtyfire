@@ -22,7 +22,10 @@ $app->addRoutes(array(
     '/' => 'Home:index',
     '/holiday/create' => 'Home:createHoliday',
     '/settings' => 'Home:settings',
-    '/settings/update' => 'Home:updateSettings'
+    '/settings/update' => 'Home:updateSettings',
+    '/recepients' => 'Home:recepients',
+    '/recepients/new' => 'Home:newRecepient',
+    '/recepients/create' => 'Home:createRecepient'
 ));
 
 $view = $app->view();

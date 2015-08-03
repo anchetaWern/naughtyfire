@@ -206,4 +206,66 @@ class Home extends \SlimController\SlimController
     }
 
   
+    public function recepientsAction(){
+
+    	$recepients = $books = R::findAll('recepients');
+
+    	$this->render('recepients', array('recepients' => $recepients));
+
+    }
+
+
+    public function newRecepientAction(){
+
+    	$this->render('new_recepient');
+    }   
+
+
+    public function createRecepientAction(){
+
+    	$name = $this->app->request->post('name');
+    	$email = $this->app->request->post('email');
+		$phone_number = $this->app->request->post('phone_number');    	
+
+    	
+		$rules = array(
+		    'name' => v::string()->notEmpty()->setName('name'),
+		    'email' => v::email()->notEmpty()->setName('email'),
+		    'phone_number' => v::phone()->setName('phone_number')
+		);
+
+		$data = $this->app->request->post();
+
+		$message = array(
+			'type' => 'success',
+			'text' => 'Successfully added recepient'
+		);
+
+		foreach($data as $key => $value){
+
+		    try{
+		        $rules[$key]->check($value);
+		    } catch (\InvalidArgumentException $e) {
+		        $message = array(
+		        	'type' => 'error',
+		        	'text' => $e->getMainMessage()
+		        );  
+		        break;  
+		    }
+
+		}
+
+		if($message['type'] == 'success'){		
+			$recepient = R::dispense('recepients');
+			$recepient->name = $name;
+			$recepient->email = $email;
+			$recepient->phone_number = $phone_number;
+			R::store($recepient);
+		}
+
+		$this->app->flash('message', $message);
+		$this->app->redirect('/recepients/new');
+
+    }
+
 }
