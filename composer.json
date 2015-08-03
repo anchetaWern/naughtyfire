@@ -1,0 +1,17 @@
+{
+    "require": {
+        "slim/slim": "~2.0",
+        "slimcontroller/slimcontroller": "0.4.3",
+        "swiftmailer/swiftmailer": "^5.4",
+        "twilio/sdk": "^4.2",
+        "respect/validation": "^0.9.3",
+        "nesbot/carbon": "^1.20",
+        "robmorgan/phinx": "^0.4.4",
+        "gabordemooij/redbean": "^4.2"
+    },
+    "autoload": {
+    	"psr-0": {
+            "Naughtyfire": "src/"
+        }
+    }
+}
