@@ -25,7 +25,8 @@ $app->addRoutes(array(
     '/settings/update' => 'Home:updateSettings',
     '/recepients' => 'Home:recepients',
     '/recepients/new' => 'Home:newRecepient',
-    '/recepients/create' => 'Home:createRecepient'
+    '/recepients/create' => 'Home:createRecepient',
+    '/notify' => 'Notifier:notify'
 ));
 
 $view = $app->view();
