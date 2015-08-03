@@ -20,7 +20,9 @@ $app = New \SlimController\Slim(array(
 
 $app->addRoutes(array(
     '/' => 'Home:index',
-    '/holiday/create' => 'Home:createHoliday'
+    '/holiday/create' => 'Home:createHoliday',
+    '/settings' => 'Home:settings',
+    '/settings/update' => 'Home:updateSettings'
 ));
 
 $view = $app->view();
