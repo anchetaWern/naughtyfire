@@ -3,20 +3,20 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Naughtyfire</title>
-	<link rel="stylesheet" href="bower_components/picnic/releases/picnic.min.css">
-	<link rel="stylesheet" href="bower_components/pikaday/css/pikaday.css">
-	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="/bower_components/picnic/releases/picnic.min.css">
+	<link rel="stylesheet" href="/bower_components/pikaday/css/pikaday.css">
+	<link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
 	<div class="container">
 		<header>		
-			<img src="img/naughtyfire.png" id="logo" alt="logo">
+			<img src="/img/naughtyfire.png" id="logo" alt="logo">
 			<h1>Naughtyfire</h1>
 		</header>
 		<div id="message" class="<?= $flash['message']['type'] ?>">
 			<?= $flash['message']['text'] ?>
 		</div>
-		<form action="holiday/create" method="POST">	
+		<form action="/holiday/create" method="POST">	
 			<legend>New Event</legend>	
 			<p>		
 				<label for="title">Title</label>
@@ -43,7 +43,7 @@
 			</p>
 		</form>
 	</div>
-	<script src="bower_components/pikaday/pikaday.js"></script>
-	<script src="js/main.js"></script>
+	<script src="/bower_components/pikaday/pikaday.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 </html>
