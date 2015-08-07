@@ -27,6 +27,10 @@
 				<input type="text" id="date" name="date">
 			</p>
 			<p>
+				<label for="days">Days</label>
+				<input type="text" id="days" name="days" value="1">
+			</p>
+			<p>
 				<label>
 				  <input type="checkbox" name="is_enabled" checked>
 				  <span class="checkable">Enabled</span>

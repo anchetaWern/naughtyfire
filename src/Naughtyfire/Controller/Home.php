@@ -20,6 +20,7 @@ class Home extends \SlimController\SlimController
     	
     	$title = $this->app->request->post('title');
     	$date = $this->app->request->post('date');
+    	$days = $this->app->request->post('days');
     	$is_enabled = (!empty($this->app->request->post('is_enabled'))) ? true : false;
     	$is_recurring = (!empty($this->app->request->post('is_recurring'))) ? true : false;
 
@@ -28,6 +29,7 @@ class Home extends \SlimController\SlimController
 		$rules = array(
 		    'title' => v::string()->notEmpty()->setName('title'),
 		    'date' => v::date()->notEmpty()->setName('date'),
+		    'days' => v::int()->notEmpty()->setName('days'),
 		    'is_enabled' => v::bool()->setName('is_enabled'),
 		    'is_recurring' => v::bool()->setName('is_recurring')
 		);
@@ -59,6 +61,7 @@ class Home extends \SlimController\SlimController
 		$event = R::dispense('events');
 		$event->title = $title;
 		$event->date = $date;
+		$event->days = $days;
 		$event->is_enabled = $is_enabled;
 		$event->is_recurring = $is_recurring;
 		R::store($event);

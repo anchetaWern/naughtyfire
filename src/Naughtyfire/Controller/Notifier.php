@@ -9,7 +9,7 @@ use Carbon\Carbon as c;
 class Notifier extends \SlimController\SlimController
 {
 
-
+   
     public function notifyAction()
     {
 
@@ -34,11 +34,21 @@ class Notifier extends \SlimController\SlimController
       
           foreach($recepients as $recepient){
 
-            $subject = str_replace(array('{title}', '{date}'), array($event->title, $event->date), $settings->subject);
-            $body = str_replace(array('{title}', '{date}', '{name}'), array($event->title, $event->date, $settings->name), $settings->msg_template);
+            $subject = preg_replace(array('/{title}/', '/{date}/'), array($event->title, $event->date), $settings->subject);
+            
+            $end_date = c::parse($event->date)->modify('+' . $event->days . ' days')->toDateString();
 
+            $body_patterns = array('/{name}/', '/{title}/', '/{start_date}/', '/<!(\w+) ({\w+})>/');
+            $body_replacements = array($settings->name, $event->title, $event->date, "$1 {$end_date}");
+
+            if($event->days == 1){
+              $body_replacements[3] = '';
+            }
+
+            $body = preg_replace($body_patterns, $body_replacements, $settings->msg_template);
+           
             if($recepient->email && $settings->mail_username && $settings->mail_password){
-
+              
               $message = \Swift_Message::newInstance()
                 ->setSubject($subject)
                 ->setBody($body)
@@ -60,12 +70,13 @@ class Notifier extends \SlimController\SlimController
               );
 
             }
+           
+            
               
           }
 
 
       }
     }
-
   
 }
